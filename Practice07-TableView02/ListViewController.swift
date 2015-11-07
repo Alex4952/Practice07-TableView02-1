@@ -8,7 +8,8 @@
 
 import UIKit
 
-// 맨 밑의 셀이 보이도록 하려면?
+
+// 프로토타입 셀을 여려개 만들수도 있음. 필요에 따라. 아이덴티파이어의 이름을 다르게 줘서 케이스별로 다르게 구성하는것도 가능 (음악셀, 영화셀)
 class ListViewController : UITableViewController {
 	
 	// 테이블 뷰를 구성할 리스트 데이터를 담을 배열 변수 ( = [MovieVO]() )
@@ -31,7 +32,7 @@ class ListViewController : UITableViewController {
 		mvo.title = "Avengers"
 		mvo.description = "영웅들이 총집합하는 히어로물"
 		mvo.opendate = "2012-04-11"
-		mvo.rating = 8.74
+		mvo.rating = 2.74
 		self.list.append(mvo)
 
 		mvo = MovieVO()
@@ -48,21 +49,37 @@ class ListViewController : UITableViewController {
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
-		let cell = tableView.dequeueReusableCellWithIdentifier("cell") ?? UITableViewCell() // 닐이면 새로운 셀을 만들어라.
+//		let cell = tableView.dequeueReusableCellWithIdentifier("cell") ?? UITableViewCell() // 닐이면 새로운 셀을 만들어라.
 //		cell.textLabel?.text = self.list[indexPath.row].title
 //		cell.detailTextLabel?.text = self.list[indexPath.row].description
 		//		cell.imageView?.image = UIImage(named: self.imgList[indexPath.row])
 		
+/*
+		// Tag로 읽어옴. (Outlet을 연결하지 않음, Tag를 이용해서 계속 찍어내야 함)
 		let movieTitle = cell.viewWithTag(101) as? UILabel
 		let movieDetail = cell.viewWithTag(102) as? UILabel
 		let movieOpendate = cell.viewWithTag(103) as? UILabel
-
+		let movieRatingImg = cell.viewWithTag(104) as? UIImageView
+		
 		movieTitle?.text = self.list[indexPath.row].title
 		movieDetail?.text = self.list[indexPath.row].description
 		movieOpendate?.text = self.list[indexPath.row].opendate
+		movieRatingImg?.image = self.getRatingImage(self.list[indexPath.row].rating!)
+*/
+
+		// 커스텀 프로토타입셀 : 프로토타입셀을 별도의 클래스로 만들었음. (직접 outlet을 만들어서 연결하였으므로 관리하기가 더 용이, 이 방법을 추천)
+		let cell = tableView.dequeueReusableCellWithIdentifier("cell") as? MovieCell ?? MovieCell()
+		
+		cell.movieTitle.text = self.list[indexPath.row].title
+		cell.detail.text = self.list[indexPath.row].description
+		cell.opendate.text = self.list[indexPath.row].opendate
+		cell.ratingImage.image = self.getRatingImage(self.list[indexPath.row].rating!)
 		
 		return cell
 	}
+	
+	
+	
 /*
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		//셀을 여기서 생성
@@ -90,5 +107,40 @@ class ListViewController : UITableViewController {
 		}
 	}
 	
+	func getRatingImage(rate: Float) -> UIImage? {
+		let rating = Int(rate/2) // 소수점 이하 버림
+	
+//		return UIImage(named: "\(rating)StarsSmall.png")
+		
+		switch rating {
+			case 1: return UIImage(named: "1StarsSmall.png")
+			case 2: return UIImage(named: "2StarsSmall.png")
+			case 3: return UIImage(named: "3StarsSmall.png")
+			case 4: return UIImage(named: "4StarsSmall.png")
+			case 5: return UIImage(named: "5StarsSmall.png")
+			default: return nil // 오류는 안나고 화면에 안그려질 뿐.
+		}
+		
+/*
+		if rating == 1 {
+			return UIImage(named: "1StarsSmall.png")
+		}
+		else if rating == 2 {
+			return UIImage(named: "2StarsSmall.png")
+		}
+		else if rating == 3 {
+			return UIImage(named: "3StarsSmall.png")
+		}
+		else if rating == 4 {
+			return UIImage(named: "4StarsSmall.png")
+		}
+		else if rating == 5 {
+			return UIImage(named: "5StarsSmall.png")
+		}
+		else {
+			return UIImage(named: "5StarsSmall.png")
+		}
+*/
+	}
 	
 }
