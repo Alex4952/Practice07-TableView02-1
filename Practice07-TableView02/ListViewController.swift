@@ -13,12 +13,12 @@ class ListViewController : UITableViewController {
 	
 	// 테이블 뷰를 구성할 리스트 데이터를 담을 배열 변수 ( = [MovieVO]() )
 	var list = Array<MovieVO>()
-	var imgList = [String]()
+//	var imgList = [String]()
 	
 	override func viewDidLoad() {
-		imgList.append("juez")
-		imgList.append("lap[es")
-		imgList.append("laptop en el cielo")
+//		imgList.append("juez")
+//		imgList.append("lap[es")
+//		imgList.append("laptop en el cielo")
 		
 		var mvo = MovieVO()
 		mvo.title = "Dark Knight"
@@ -49,10 +49,17 @@ class ListViewController : UITableViewController {
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		
 		let cell = tableView.dequeueReusableCellWithIdentifier("cell") ?? UITableViewCell() // 닐이면 새로운 셀을 만들어라.
-		cell.textLabel?.text = self.list[indexPath.row].title
-		cell.detailTextLabel?.text = self.list[indexPath.row].description
+//		cell.textLabel?.text = self.list[indexPath.row].title
+//		cell.detailTextLabel?.text = self.list[indexPath.row].description
+		//		cell.imageView?.image = UIImage(named: self.imgList[indexPath.row])
 		
-		cell.imageView?.image = UIImage(named: self.imgList[indexPath.row])
+		let movieTitle = cell.viewWithTag(101) as? UILabel
+		let movieDetail = cell.viewWithTag(102) as? UILabel
+		let movieOpendate = cell.viewWithTag(103) as? UILabel
+
+		movieTitle?.text = self.list[indexPath.row].title
+		movieDetail?.text = self.list[indexPath.row].description
+		movieOpendate?.text = self.list[indexPath.row].opendate
 		
 		return cell
 	}
