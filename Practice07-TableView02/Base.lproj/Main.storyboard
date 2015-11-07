@@ -46,7 +46,7 @@
                     <navigationItem key="navigationItem" title="목록" id="H3p-Kp-qzS"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="kWt-re-Uac" kind="show" id="dpn-EF-Tlw"/>
+                        <segue destination="kWt-re-Uac" kind="show" id="fgX-J8-q9R"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUc-2d-P3M" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -67,7 +67,8 @@ class ListViewController : UITableViewController {
 		
 		if let uvc = self.storyboard?.instantiateViewControllerWithIdentifier("DetailVC") as? DetailVC {
 			
-			// 스토리보드에서 셀이 아닌 상단의 컨트롤러 선택아이콘에서 드래그 하여 매뉴얼세그웨이로 연결해놓음.(화면상에 네이게이션 영역 표시됨)
+			// 스토리보드에서 셀이 아닌 상단의 컨트롤러 선택아이콘에서 드래그 하여 [매뉴얼세그웨이/show] 로 연결해놓음.(화면상에 네이게이션 영역 표시됨)
+			// 스토리보드의 DetailVC 화면에 네비게이션 영역표시 용도로만 연결함 (없어도 실제 구동시에는 네비게이션 영역 표시됨)
 			// 이 부분에서 넘어가는 페이지에 바로 객체를 넘겨버림
 			uvc.mvo = self.list[indexPath.row]
 			
