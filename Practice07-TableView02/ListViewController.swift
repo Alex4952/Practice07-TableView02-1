@@ -9,7 +9,8 @@
 import UIKit
 
 
-// 프로토타입 셀을 여려개 만들수도 있음. 필요에 따라. 아이덴티파이어의 이름을 다르게 줘서 케이스별로 다르게 구성하는것도 가능 (음악셀, 영화셀)
+// 프로토타입 셀을 여려개(Table View > Prototype Cells : 3) 만들수도 있음. 필요에 따라.
+// 아이덴티파이어의 이름을 다르게(cell1, cell2, cell3) 줘서 케이스별로 다르게 구성하는것도 가능 (음악셀, 영화셀)
 class ListViewController : UITableViewController {
 	
 	// 테이블 뷰를 구성할 리스트 데이터를 담을 배열 변수 ( = [MovieVO]() )
