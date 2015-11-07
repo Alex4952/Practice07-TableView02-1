@@ -20,7 +20,7 @@ class DetailVC: UITableViewController {
         super.viewDidLoad()
 		
 		self.titleLabel.text = mvo?.title
-		self.ratingLabel.text = "\((mvo?.rating)!)"
+		self.ratingLabel.text = "\((mvo?.rating)!)" // Optional 해제: 괄호로 한번 더 묶어야 함.
 		self.opendateLabel.text = mvo?.opendate
 
     }

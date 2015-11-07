@@ -13,8 +13,13 @@ class ListViewController : UITableViewController {
 	
 	// 테이블 뷰를 구성할 리스트 데이터를 담을 배열 변수 ( = [MovieVO]() )
 	var list = Array<MovieVO>()
+	var imgList = [String]()
 	
 	override func viewDidLoad() {
+		imgList.append("juez")
+		imgList.append("lap[es")
+		imgList.append("laptop en el cielo")
+		
 		var mvo = MovieVO()
 		mvo.title = "Dark Knight"
 		mvo.description = "배트맨 비긴즈의 속편"
@@ -47,6 +52,8 @@ class ListViewController : UITableViewController {
 		cell.textLabel?.text = self.list[indexPath.row].title
 		cell.detailTextLabel?.text = self.list[indexPath.row].description
 		
+		cell.imageView?.image = UIImage(named: self.imgList[indexPath.row])
+		
 		return cell
 	}
 /*
@@ -69,7 +76,7 @@ class ListViewController : UITableViewController {
 			
 			// 스토리보드에서 셀이 아닌 상단의 컨트롤러 선택아이콘에서 드래그 하여 [매뉴얼세그웨이/show] 로 연결해놓음.(화면상에 네이게이션 영역 표시됨)
 			// 스토리보드의 DetailVC 화면에 네비게이션 영역표시 용도로만 연결함 (없어도 실제 구동시에는 네비게이션 영역 표시됨)
-			// 이 부분에서 넘어가는 페이지에 바로 객체를 넘겨버림
+			// 이 부분에서 넘어가는 페이지에있는 객체에 바로 전달. (mvo)
 			uvc.mvo = self.list[indexPath.row]
 			
 			self.navigationController?.pushViewController(uvc, animated: true)
